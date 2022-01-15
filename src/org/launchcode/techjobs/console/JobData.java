@@ -10,6 +10,7 @@ import java.io.Reader;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * Created by LaunchCode
@@ -53,6 +54,40 @@ public class JobData {
 
         return allJobs;
     }
+    /* MY STUDENT CODE WORK BELOW: findByValue
+    Searches for a string within each of the columns
+    * do duplicate jobs
+    * If column is added to the data, the code automatically searches the new column
+    * don't call findByColumnAndValue use loops & collection methods
+    *code will look similar to findByColumnAndValue
+    *call findByValue in main (place it appropriately)
+    */
+
+    public static ArrayList<HashMap<String, String>>findByValue( String value) {
+
+        // load data, if not already loaded
+        loadData();
+
+        ArrayList<HashMap<String, String>> jobs = new ArrayList<>();
+
+        for (HashMap<String, String> row : allJobs) {
+            for (String column: row.keySet()){
+                String aValue =row.get(column);
+
+                if (aValue.toLowerCase().contains(value.toLowerCase())) {
+                    jobs.add(row);
+                    break;
+                }
+            }
+
+        }
+        return jobs;
+    }
+
+
+
+
+
 
     /**
      * Returns results of search the jobs data by key/value, using
